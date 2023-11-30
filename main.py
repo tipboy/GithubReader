@@ -27,18 +27,13 @@ def main():
             llm = OpenAI(api_key=OPENAI_API_KEY, temperature=0.2)
 
             template = """
-            Repo: {repo_name} ({github_url}) | Conv: {conversation_history} | Docs: {numbered_documents} | Q: {question} | FileCount: {file_type_counts} | FileNames: {filenames}
+            项目: {repo_name} ({github_url}) | 会话历史: {conversation_history} | 文档: {numbered_documents} | 问题: {question} | 文件数: {file_type_counts} | 文件名: {filenames}
 
-            Instr:
-            1. Answer based on context/docs.
-            2. Focus on repo/code.
-            3. Consider:
-                a. Purpose/features - describe.
-                b. Functions/code - provide details/samples.
-                c. Setup/usage - give instructions.
-            4. Unsure? Say "I am not sure".
+            说明:
+            1. 基于文档回答问题.
+            2. 注意集中在代码上.
 
-            Answer:
+            回复:
             """
 
             prompt = PromptTemplate(
@@ -52,7 +47,7 @@ def main():
             question_context = QuestionContext(index, documents, llm_chain, model_name, repo_name, github_url, conversation_history, file_type_counts, filenames)
             while True:
                 try:
-                    user_question = input("\n" + WHITE + "Ask a question about the repository (type 'exit()' to quit): " + RESET_COLOR)
+                    user_question = input("\n" + WHITE + "开始询问一个问题: " + RESET_COLOR)
                     if user_question.lower() == "exit()":
                         break
                     print('Thinking...')
@@ -60,7 +55,7 @@ def main():
 
                     answer = ask_question(user_question, question_context)
                     print(GREEN + '\nANSWER\n' + answer + RESET_COLOR + '\n')
-                    conversation_history += f"Question: {user_question}\nAnswer: {answer}\n"
+                    conversation_history += f"问题: {user_question}\n回答: {answer}\n"
                 except Exception as e:
                     print(f"An error occurred: {e}")
                     break

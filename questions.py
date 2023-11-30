@@ -18,7 +18,7 @@ def ask_question(question, context: QuestionContext):
     relevant_docs = search_documents(question, context.index, context.documents, n_results=5)
 
     numbered_documents = format_documents(relevant_docs)
-    question_context = f"This question is about the GitHub repository '{context.repo_name}' available at {context.github_url}. The most relevant documents are:\n\n{numbered_documents}"
+    question_context = f"这个问题是关于这个项目名称: '{context.repo_name}', 项目地址: {context.github_url}. 重要文件:\n\n{numbered_documents}"
 
     answer_with_sources = context.llm_chain.run(
         model=context.model_name,
