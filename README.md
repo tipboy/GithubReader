@@ -1,10 +1,12 @@
 ##代码仓库探索器##
-使用OpenAI的GPT-3语言模型探索和提问GitHub代码仓库。
+使用OpenAI的GPT-3.5语言模型探索和提问GitHub代码仓库。
+输入Git地址，即可分析，原理是先下载下整个项目，然后再将代码提取，生成本地数据库
+问答的时候，使用检索增强的方式，先从本地检索TOP_k 相近结果，然后把结果当做参考内容放到gpt中回答用户内容。
 
 ##先决条件##
 Python 3.10
 OpenAI API密钥（设置在环境变量OPENAI_API_KEY中）
-
+export OPENAI_API_KEY="sk-xxxxx"
 
 #使用方法#
 将OpenAI API密钥设置为环境变量OPENAI_API_KEY。
