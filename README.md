@@ -1,7 +1,11 @@
-##代码仓库探索器##
+##代码仓库探索器## （从其他大神英文版clone过来的）
 使用OpenAI的GPT-3.5语言模型探索和提问GitHub代码仓库。
 输入Git地址，即可分析，原理是先下载下整个项目，然后再将代码提取，生成本地数据库
 问答的时候，使用检索增强的方式，先从本地检索TOP_k 相近结果，然后把结果当做参考内容放到gpt中回答用户内容。
+
+支持的文档类型：
+    extensions = ['txt', 'md', 'markdown', 'rst', 'py', 'js', 'java', 'c', 'cpp', 'cs', 'go', 'rb', 'php', 'scala', 'html', 'htm', 'xml', 'json', 'yaml', 'yml', 'ini', 'toml', 'cfg', 'conf', 'sh', 'bash', 'css', 'scss', 'sql', 'gitignore', 'dockerignore', 'editorconfig', 'ipynb']
+
 
 ##先决条件##
 Python 3.10
